@@ -42,6 +42,7 @@ func _on_Button_pressed():
 		$KebabPic.visible = false
 		money_change(-1)
 		$PopupMenu.hide()
+		$Timer.start()
 	
 func _on_boozeButton_pressed():
 	if (money >= 10 and $ComadoreRedPic.visible==false):
@@ -50,6 +51,7 @@ func _on_boozeButton_pressed():
 		$ComadoreRedPic.visible = true
 		money_change(-10)
 		$PopupMenu.hide()
+		$Timer.start()
 	
 
 func _on_kebabButton_pressed():
@@ -59,6 +61,7 @@ func _on_kebabButton_pressed():
 		$ComadoreRedPic.visible = false
 		money_change(-10)
 		$PopupMenu.hide()
+		$Timer.start()
 	
 func money_change(ammount):
 	if money + ammount >= 0:
@@ -66,4 +69,17 @@ func money_change(ammount):
 		$Label.text = "MONEY: \n" + str(money)
 
 
-
+func _on_Timer_timeout():
+	if ( $BasicHarry.visible ) :
+		$BasicHarry.visible = false
+	else: 
+		if ($KebabPic.visible  or $LeftoversPic.visible  or $ComadoreRedPic.visible):
+			$KebabPic.visible = false
+			$LeftoversPic.visible = false
+			$ComadoreRedPic.visible = false
+			$BasicHarry.visible = true
+#	else if $BasicHarry.visible:
+#		$BasicHarry.visible = false
+		
+	
+	
