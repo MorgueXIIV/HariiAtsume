@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://leftovers-script.gd" type="Script" id=1]
+[ext_resource path="res://wirroomversoisometricha001_2.jpg" type="Texture" id=2]
+[ext_resource path="res://Screenshot_20220425-122348_Clip_Studio2.jpg" type="Texture" id=3]
+[ext_resource path="res://Screenshot_20220425-122535_Clip_Studio.jpg" type="Texture" id=4]
+[ext_resource path="res://Screenshot_20220425-122323_Clip_Studio.jpg" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 120.244, 35.6221 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 501, -55 )
+
+[node name="HotelRoomBackground" type="Sprite" parent="."]
+position = Vector2( -24, 352 )
+scale = Vector2( 1.03947, 0.91358 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 254, 392 )
+script = ExtResource( 1 )
+
+[node name="KebabPic" type="Sprite" parent="Area2D"]
+visible = false
+position = Vector2( -380, 126 )
+scale = Vector2( 0.26626, 0.3125 )
+texture = ExtResource( 5 )
+
+[node name="LeftoversPic" type="Sprite" parent="Area2D"]
+visible = false
+position = Vector2( -384, 123 )
+scale = Vector2( 0.241135, 0.321012 )
+texture = ExtResource( 3 )
+
+[node name="ComadoreRedPic" type="Sprite" parent="Area2D"]
+visible = false
+position = Vector2( -367.766, 115.656 )
+scale = Vector2( 0.24019, 0.211719 )
+texture = ExtResource( 4 )
+
+[node name="PopupMenu" type="PopupMenu" parent="Area2D"]
+visible = true
+margin_left = -503.0
+margin_top = -38.0
+margin_right = -258.0
+margin_bottom = 148.0
+popup_exclusive = true
+hide_on_state_item_selection = true
+
+[node name="leftoversButton" type="Button" parent="Area2D/PopupMenu"]
+margin_left = 126.0
+margin_top = 40.0
+margin_right = 200.0
+margin_bottom = 60.0
+text = "Leftovers"
+
+[node name="boozeButton" type="Button" parent="Area2D/PopupMenu"]
+anchor_left = 0.042
+anchor_top = 0.5
+anchor_right = 0.042
+anchor_bottom = 0.5
+margin_left = 115.71
+margin_top = -10.0
+margin_right = 175.71
+margin_bottom = 10.0
+text = "Alcohol"
+
+[node name="kebabButton" type="Button" parent="Area2D/PopupMenu"]
+margin_left = 127.0
+margin_top = 130.0
+margin_right = 178.0
+margin_bottom = 150.0
+text = "Kebab"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( -20, -3 )
+polygon = PoolVector2Array( -476, 109, -418, 79, -225, 144, -299, 176 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -378, 126 )
+rotation = 0.345575
+scale = Vector2( 0.849459, 1 )
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="Area2D"]
+margin_left = 204.0
+margin_top = -321.0
+margin_right = 259.0
+margin_bottom = -307.0
+text = "MONEY: "
+
+[connection signal="input_event" from="Area2D" to="Area2D" method="_on_Area2D_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_obj_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_obj_mouse_exited"]
+[connection signal="pressed" from="Area2D/PopupMenu/leftoversButton" to="Area2D" method="_on_Button_pressed"]
+[connection signal="pressed" from="Area2D/PopupMenu/boozeButton" to="Area2D" method="_on_boozeButton_pressed"]
+[connection signal="pressed" from="Area2D/PopupMenu/kebabButton" to="Area2D" method="_on_kebabButton_pressed"]
